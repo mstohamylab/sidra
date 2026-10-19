@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sidra PEM Platform – Interactive Mockup</title>
+<style>
+:root{--navy:#1F3A5F;--teal:#0E7C86;--teal-l:#E6F3F4;--orange:#F28C28;--orange-d:#C96A12;--orange-l:#FFF4E8;--ink:#1d2733;--muted:#5B6770;--line:#E2E7EC;--bg:#F5F7F9;--ok:#1E8E5A;--warn:#C98A00;--bad:#C0392B;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI","Noto Sans","Noto Sans Arabic","DejaVu Sans",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:14px}
+a{color:inherit}
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+nav.idx{background:var(--navy);color:#fff;padding:18px 0;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{padding:0 20px 16px;border-bottom:1px solid rgba(255,255,255,.15)}
+.brand b{font-size:20px;letter-spacing:.3px}.brand b span{color:var(--orange)}
+.brand small{display:block;opacity:.7;font-size:11px;margin-top:2px}
+.idx h6{margin:18px 20px 6px;font-size:10.5px;letter-spacing:1.2px;opacity:.55;font-weight:600}
+.idx a{display:flex;gap:10px;align-items:center;padding:9px 20px;text-decoration:none;font-size:13px;opacity:.85;border-left:3px solid transparent}
+.idx a:hover{background:rgba(255,255,255,.06);opacity:1}
+.idx a.on{background:rgba(242,140,40,.16);border-left-color:var(--orange);opacity:1}
+.idx a i{font-style:normal;width:22px;height:22px;border-radius:6px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:11px;font-weight:700}
+main{padding:22px 28px 40px;min-width:0}
+.scr{display:none}.scr.on{display:block}
+.hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:16px;gap:12px;flex-wrap:wrap}
+.hdr h1{margin:0;font-size:21px}.hdr p{margin:3px 0 0;color:var(--muted)}
+.tag{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;background:var(--teal-l);color:var(--teal)}
+.tag.o{background:var(--orange-l);color:var(--orange-d)}.tag.r{background:#FBE9E7;color:var(--bad)}.tag.g{background:#E5F5EC;color:var(--ok)}.tag.n{background:#E8EDF3;color:var(--navy)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.card h3{margin:0 0 10px;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g73{grid-template-columns:1.7fr 1fr}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font-size:12.5px;cursor:pointer;font-family:inherit;color:var(--ink)}
+.btn.p{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:600}.btn.t{background:var(--teal);border-color:var(--teal);color:#fff}
+.muted{color:var(--muted)}.sm{font-size:12px}
+/* Index home */
+.hero{background:linear-gradient(120deg,var(--navy),#27527f 60%,var(--teal));color:#fff;border-radius:16px;padding:28px 30px;margin-bottom:18px}
+.hero h1{margin:0 0 6px;font-size:26px}.hero p{margin:0;opacity:.85;max-width:760px;line-height:1.5}
+.tile{display:block;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px;transition:.15s}
+.tile:hover{border-color:var(--orange);box-shadow:0 4px 14px rgba(31,58,95,.08)}
+.tile .n{font-size:11px;color:var(--orange-d);font-weight:700;letter-spacing:.8px}.tile h4{margin:4px 0 4px;font-size:15px}.tile p{margin:0;color:var(--muted);font-size:12.5px;line-height:1.45}
+/* PowerChart frame */
+.pc{border:1px solid #B9C3CC;border-radius:8px;overflow:hidden;background:#fff}
+.pc-top{background:#3B4A5A;color:#dfe6ec;font-size:11.5px;padding:5px 10px;display:flex;justify-content:space-between}
+.banner{background:#DCE6F0;border-bottom:1px solid #B9C3CC;padding:8px 12px;display:flex;gap:22px;flex-wrap:wrap;font-size:12px}
+.banner b{color:var(--navy)}
+.pc-body{display:grid;grid-template-columns:150px 1fr}
+.pc-menu{background:#EEF2F5;border-right:1px solid #CBD3DA;font-size:12px;padding:8px 0}
+.pc-menu div{padding:6px 12px}.pc-menu .on{background:#fff;border-left:3px solid var(--orange);font-weight:600}
+.pc-main{padding:14px}
+.sugg{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-bottom:1px solid var(--line)}
+.sugg:last-child{border:0}.sugg input{margin-top:3px;accent-color:var(--orange)}
+.sugg h5{margin:0 0 3px;font-size:13px}.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.why{font-size:11.5px;color:var(--muted)}
+.chat{display:flex;flex-direction:column;gap:9px;font-size:12.5px}
+.m{padding:9px 11px;border-radius:10px;max-width:92%;line-height:1.45}
+.m.u{background:var(--navy);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.m.a{background:var(--orange-l);border:1px solid #F7D2AC;align-self:flex-start;border-bottom-left-radius:3px}
+.m.a b{color:var(--orange-d)}
+.inp{display:flex;gap:6px;margin-top:10px}.inp input{flex:1;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-family:inherit;font-size:12.5px}
+.agent{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--orange-d);margin-bottom:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px #d4f1e2}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}.seg span{padding:5px 10px;font-size:12px;border-right:1px solid var(--line)}.seg span:last-child{border:0}.seg .on{background:var(--teal);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:12.5px}th{text-align:left;color:var(--muted);font-weight:600;font-size:11.5px;padding:7px 8px;border-bottom:1px solid var(--line)}td{padding:8px;border-bottom:1px solid var(--line)}
+.bar{height:7px;background:#EEF1F4;border-radius:5px;overflow:hidden}.bar i{display:block;height:100%;background:var(--teal)}
+/* Phone */
+.phones{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start}
+.phone{width:300px;border:10px solid #1b2430;border-radius:34px;background:#fff;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.ph-top{background:var(--teal);color:#fff;padding:14px 14px 12px}
+.ph-top small{opacity:.8}.ph-top h4{margin:3px 0 0;font-size:16px}
+.ph-body{padding:12px;min-height:470px;background:#F7F9FA}
+.pcard{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:9px;display:flex;gap:10px;align-items:center}
+.thumb{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--orange),#f7b878);display:grid;place-items:center;color:#fff;font-weight:700;font-size:18px;flex:none}
+.thumb.v{background:linear-gradient(135deg,var(--teal),#4fb3bb)}.thumb.q{background:linear-gradient(135deg,var(--navy),#4a6f9c)}
+.pcard h5{margin:0;font-size:13px}.pcard p{margin:2px 0 0;font-size:11px;color:var(--muted)}
+.ph-nav{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:9px 0;font-size:10.5px;color:var(--muted)}.ph-nav .on{color:var(--orange-d);font-weight:700}
+[dir=rtl]{font-family:"Segoe UI","Noto Sans Arabic","DejaVu Sans",sans-serif}
+.quiz label{display:block;border:1px solid var(--line);border-radius:10px;padding:9px 10px;margin:7px 0;background:#fff;font-size:12.5px}
+.quiz label.ok{border-color:var(--ok);background:#E5F5EC}
+.badge{display:inline-flex;align-items:center;gap:5px;background:#FFF1D6;color:#8a5a00;border-radius:20px;padding:3px 9px;font-size:11px;font-weight:700}
+/* Kanban */
+.kan{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.col{background:#EEF2F5;border-radius:10px;padding:9px;min-height:330px}
+.col h5{margin:2px 2px 9px;font-size:12px;display:flex;justify-content:space-between;color:var(--navy)}
+.kc{background:#fff;border:1px solid var(--line);border-radius:8px;padding:9px;margin-bottom:8px;font-size:12px}
+.kc b{display:block;margin-bottom:4px;font-size:12.5px}.kc .chips{margin-top:6px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+.kpi small{color:var(--muted);font-size:11.5px}.kpi b{display:block;font-size:24px;margin:4px 0 2px;color:var(--navy)}.kpi span{font-size:11.5px;color:var(--ok);font-weight:600}
+.vbars{display:flex;align-items:flex-end;gap:10px;height:150px;padding:6px 4px 0;border-bottom:1px solid var(--line)}
+.vbars div{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;color:var(--muted)}
+.vbars i{display:block;width:100%;border-radius:5px 5px 0 0;background:var(--teal)}
+.vbars i.o{background:var(--orange)}
+.diff{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.diff .box{border:1px solid var(--line);border-radius:10px;padding:12px;line-height:1.7;font-size:13px;background:#fff}
+mark{background:#FDE2C4;padding:0 3px;border-radius:3px}mark.r{background:#F9D3CE}
+.flow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;font-size:11.5px}
+.flow span{padding:5px 9px;border-radius:6px;background:#EEF2F5}.flow span.d{background:var(--teal);color:#fff}.flow span.c{background:var(--orange);color:#fff}
+.note{font-size:11px;color:var(--muted);margin-top:14px;border-top:1px dashed var(--line);padding-top:8px}
+@media(max-width:900px){.app{grid-template-columns:1fr}nav.idx{position:static;height:auto}.g2,.g3,.g4,.g73,.kan,.diff{grid-template-columns:1fr}.pc-body{grid-template-columns:1fr}.pc-menu{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<nav class="idx">
+  <div class="brand"><b>Sidra <span>PEM</span></b><small>Patient Education Platform · Mockup v1.0</small></div>
+  <h6>INDEX</h6>
+  <a href="#home" data-s="home"><i>00</i>Mockup Index</a>
+  <h6>CLINICAL USERS</h6>
+  <a href="#physician" data-s="physician"><i>01</i>Physician Workspace</a>
+  <a href="#nurse" data-s="nurse"><i>02</i>Nursing Discharge</a>
+  <h6>PATIENTS &amp; FAMILIES</h6>
+  <a href="#patient" data-s="patient"><i>03</i>Patient &amp; Family App</a>
+  <a href="#pes" data-s="pes"><i>04</i>Bedside PES Channel</a>
+  <h6>ADMINISTRATION</h6>
+  <a href="#cms" data-s="cms"><i>05</i>CMS Content Workflow</a>
+  <a href="#governance" data-s="governance"><i>06</i>AI Content Governance</a>
+  <a href="#analytics" data-s="analytics"><i>07</i>Analytics &amp; JCI</a>
+  <a href="#access" data-s="access"><i>08</i>Users &amp; Access (RBAC)</a>
+</nav>
+<main>
+
+<!-- 00 INDEX -->
+<section class="scr" id="s-home">
+  <div class="hero">
+    <span class="tag o" style="background:rgba(242,140,40,.25);color:#fff">Proposed for Sidra Medicine</span>
+    <h1 style="margin-top:10px">Sidra PEM — Agentic Patient Education Platform</h1>
+    <p>Clickable mockup of the proposed solution. Every screen below is reachable from this index and from the left navigation. All patient names and data shown are fictional.</p>
+  </div>
+  <div class="grid g4">
+    <a class="tile" href="#physician"><div class="n">01 · PHYSICIAN</div><h4>Physician Workspace</h4><p>Launched from PowerChart with patient context; AI Co-Pilot suggests and tailors education.</p></a>
+    <a class="tile" href="#nurse"><div class="n">02 · NURSING</div><h4>Nursing Discharge</h4><p>Discharge education plan, teach-back tracking, bilingual print and chart documentation.</p></a>
+    <a class="tile" href="#patient"><div class="n">03 · PATIENT &amp; FAMILY</div><h4>Patient &amp; Family App</h4><p>Assigned materials in English, Arabic and Urdu, Companion agent, quizzes and rewards.</p></a>
+    <a class="tile" href="#pes"><div class="n">04 · INPATIENT</div><h4>Bedside PES Channel</h4><p>Education playlist on the Patient Entertainment System with large-type and captions.</p></a>
+    <a class="tile" href="#cms"><div class="n">05 · ADMIN</div><h4>CMS Content Workflow</h4><p>Draft → clinical review → translation → approval → publish, with review-due dates.</p></a>
+    <a class="tile" href="#governance"><div class="n">06 · ADMIN AI</div><h4>AI Content Governance</h4><p>Agent detects inconsistencies between language versions and proposes fixes for approval.</p></a>
+    <a class="tile" href="#analytics"><div class="n">07 · ADMIN</div><h4>Analytics &amp; JCI</h4><p>Engagement, comprehension, language coverage and PCC/ACC compliance evidence.</p></a>
+    <a class="tile" href="#access"><div class="n">08 · SECURITY</div><h4>Users &amp; Access</h4><p>Role-based access, Entra ID / B2C federation via Keycloak, MFA and audit trail.</p></a>
+  </div>
+</section>
+
+<!-- 01 PHYSICIAN -->
+<section class="scr" id="s-physician">
+  <div class="hdr"><div><h1>01 · Physician Workspace</h1><p>Opened inside Cerner PowerChart (Citrix) via contextual launch — MRN, FIN and Physician ID passed automatically.</p></div><span class="tag n">Physician Co-Pilot Agent</span></div>
+  <div class="pc">
+    <div class="pc-top"><span>PowerChart Organizer for Dr. Ahmed K. (fictional)</span><span>Task · Edit · View · Patient · Chart · Help</span></div>
+    <div class="banner"><span><b>SAMPLE, Layla</b> (fictional)</span><span>MRN: <b>00•••4471</b></span><span>FIN: <b>••••8820</b></span><span>Age: <b>6 y</b></span><span>Sex: <b>F</b></span><span>Preferred language: <b>Arabic</b></span><span>Encounter: <b>Inpatient · ENT Ward</b></span><span>Allergies: <b>Penicillin</b></span></div>
+    <div class="pc-body">
+      <div class="pc-menu"><div>Clinical Notes</div><div>Orders</div><div>Results Review</div><div>MAR</div><div>Problems &amp; Dx</div><div class="on">Patient Education ▸ Sidra PEM</div><div>Discharge</div></div>
+      <div class="pc-main">
+        <div class="grid g73">
+          <div class="card">
+            <h3>AI-suggested education set <span class="tag o">7 items · based on chart context</span></h3>
+            <div class="flow" style="margin-bottom:8px"><span>Dx: Recurrent tonsillitis</span><span>Proc: Tonsillectomy (today)</span><span>Age band: 5–8</span><span>Lang: AR (+EN for father)</span><span>Reading level: Grade 5</span></div>
+            <div class="sugg"><input type="checkbox" checked><div><h5>Caring for your child after tonsillectomy</h5><div class="why">Why: matches procedure + age band · Sidra-approved v3.2</div><div class="chips"><span class="tag">Handout</span><span class="tag">AR · EN · UR</span><span class="tag g">Approved</span></div></div><button class="btn">Preview</button></div>
+            <div class="sugg"><input type="checkbox" checked><div><h5>Pain relief at home: safe dosing for children (video, 3 min)</h5><div class="why">Why: post-operative analgesia order · penicillin allergy noted</div><div class="chips"><span class="tag">Video + captions</span><span class="tag">AR · EN</span></div></div><button class="btn">Preview</button></div>
+            <div class="sugg"><input type="checkbox" checked><div><h5>Warning signs: bleeding after surgery — when to come to the ED</h5><div class="why">Why: high-risk discharge topic for this procedure</div><div class="chips"><span class="tag">Handout</span><span class="tag r">Safety-critical</span></div></div><button class="btn">Preview</button></div>
+            <div class="sugg"><input type="checkbox"><div><h5>Soft foods and fluids — a picture guide for kids</h5><div class="why">Why: child-friendly format for age 6</div><div class="chips"><span class="tag">Interactive slides</span><span class="tag o">Gamified quiz</span></div></div><button class="btn">Preview</button></div>
+            <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+              <span class="seg"><span>Grade 3</span><span class="on">Grade 5</span><span>Grade 8</span><span>Clinical</span></span>
+              <button class="btn">✎ Customise wording</button><button class="btn">🖨 Print (AR/EN)</button><button class="btn p">Assign to patient &amp; document in chart</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="agent"><span class="dot"></span>Physician Co-Pilot · grounded on approved library only</div>
+            <div class="chat">
+              <div class="m u">Add something for the father about returning to school, in English.</div>
+              <div class="m a"><b>Suggested:</b> “Returning to school after tonsillectomy” (EN, Grade 6). Typical guidance in the approved sheet: 10–14 days at home. I can add a personalised line with your follow-up date.<br><span class="sm muted">Source: Sidra PEM-ENT-014 v2.0 · last reviewed 03/2026</span></div>
+              <div class="m u">Yes, follow-up in ENT clinic in 2 weeks.</div>
+              <div class="m a">Added ✓ Draft personalised note ready for your review — nothing is sent until you approve.</div>
+            </div>
+            <div class="inp"><input placeholder="Ask the Co-Pilot (EN / عربي)…"><button class="btn p">Send</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="note">Mockup only — fictional patient. In production the Co-Pilot sees only a pseudonymised token and minimum clinical context; PHI stays on-premises.</div>
+</section>
+
+<!-- 02 NURSE -->
+<section class="scr" id="s-nurse">
+  <div class="hdr"><div><h1>02 · Nursing Discharge Education</h1><p>Discharge plan built by the Nursing Discharge Agent; nurse confirms teach-back and documents in Cerner.</p></div><span class="tag n">Nursing Discharge Agent</span></div>
+  <div class="grid g73">
+    <div class="card">
+      <h3>Discharge education plan — SAMPLE, Layla (6 y) <span class="tag o">Planned discharge: tomorrow 10:00</span></h3>
+      <table>
+        <tr><th>Topic</th><th>Audience</th><th>Language</th><th>Delivered</th><th>Teach-back</th><th>Status</th></tr>
+        <tr><td>After tonsillectomy care</td><td>Mother</td><td>Arabic</td><td>Portal + print</td><td>4/4 correct</td><td><span class="tag g">Understood</span></td></tr>
+        <tr><td>Pain relief dosing</td><td>Mother, Father</td><td>AR / EN</td><td>Video viewed 2×</td><td>2/3 correct</td><td><span class="tag o">Reinforce</span></td></tr>
+        <tr><td>Bleeding warning signs</td><td>Mother, Father</td><td>AR / EN</td><td>Print</td><td>—</td><td><span class="tag r">Pending</span></td></tr>
+        <tr><td>Soft-food picture guide</td><td>Child</td><td>Arabic</td><td>PES bedside</td><td>Quiz 5/5 ⭐</td><td><span class="tag g">Completed</span></td></tr>
+        <tr><td>Returning to school</td><td>Father</td><td>English</td><td>Email</td><td>—</td><td><span class="tag n">Sent</span></td></tr>
+      </table>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap"><button class="btn">🖨 Print bilingual discharge pack</button><button class="btn">📺 Send to bedside PES</button><button class="btn t">✓ Document education in PowerChart</button></div>
+    </div>
+    <div class="card">
+      <div class="agent"><span class="dot"></span>Nursing Discharge Agent</div>
+      <div class="chat">
+        <div class="m a"><b>Attention:</b> Teach-back on <i>pain relief dosing</i> was 2/3. The family answered the dosing-interval question incorrectly. Suggest a 2-minute review using the Arabic picture dosing card before discharge.</div>
+        <div class="m a"><b>Pending:</b> bleeding warning signs not yet reviewed. I've generated 3 teach-back questions in Arabic for you to ask.</div>
+        <div class="m u">Show the questions.</div>
+        <div class="m a" dir="rtl" style="text-align:right">١. متى يجب أن تعودي إلى الطوارئ؟<br>٢. ما هي علامات النزيف التي يجب مراقبتها؟<br>٣. ماذا تفعلين إذا رأيتِ دماً في الفم؟</div>
+      </div>
+      <div class="inp"><input placeholder="Ask the agent…"><button class="btn p">Send</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PATIENT -->
+<section class="scr" id="s-patient">
+  <div class="hdr"><div><h1>03 · Patient &amp; Family App</h1><p>Embedded in the Sidra mobile app and patient portal (SDK / deep-link). Non-personalised content is open; personalised content requires Azure AD B2C sign-in.</p></div><span class="tag n">Patient &amp; Family Companion Agent</span></div>
+  <div class="phones">
+    <div class="phone"><div class="ph-top"><small>Sidra Medicine · Education</small><h4>Layla's care plan</h4><div class="seg" style="margin-top:8px;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3)"><span class="on">EN</span><span>عربي</span><span>اردو</span></div></div>
+      <div class="ph-body">
+        <div class="sm muted" style="margin-bottom:8px">Assigned by Dr. Ahmed K. · 4 items</div>
+        <div class="pcard"><div class="thumb">📄</div><div><h5>After tonsillectomy care</h5><p>Read · 4 min · ✓ completed</p></div></div>
+        <div class="pcard"><div class="thumb v">▶</div><div><h5>Pain relief at home</h5><p>Video · 3 min · captions</p></div></div>
+        <div class="pcard"><div class="thumb">⚠</div><div><h5>Bleeding: when to come in</h5><p>Read · 2 min · important</p></div></div>
+        <div class="pcard"><div class="thumb q">★</div><div><h5>Soft-food picture quiz</h5><p>For Layla · earn a star badge</p></div></div>
+        <div class="card" style="padding:10px;margin-top:6px"><div class="sm"><b>How useful was this?</b></div><div style="font-size:20px;margin-top:4px">☆ ☆ ☆ ☆ ☆</div></div>
+      </div>
+      <div class="ph-nav"><span class="on">My plan</span><span>Library</span><span>Ask</span><span>Profile</span></div></div>
+
+    <div class="phone" dir="rtl"><div class="ph-top"><small>سدرة للطب · التثقيف الصحي</small><h4>المساعد الصحي</h4></div>
+      <div class="ph-body">
+        <div class="chat">
+          <div class="m u" style="align-self:flex-start">ابنتي لا تريد أن تأكل، هل هذا طبيعي؟</div>
+          <div class="m a" style="align-self:flex-end">من الشائع أن يقل الأكل في الأيام الأولى بعد العملية. المهم هو شرب السوائل بكثرة. أطعمة مقترحة: الزبادي، الشوربة الدافئة، المهلبية.<br><span class="sm muted">المصدر: دليل العناية بعد استئصال اللوزتين</span></div>
+          <div class="m a" style="align-self:flex-end"><b>تنبيه:</b> إذا لم تشرب ابنتك لأكثر من ١٢ ساعة أو ظهر نزيف، تواصلي مع الطوارئ فوراً.</div>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:10px"><button class="btn">🔊 استماع</button><button class="btn">📞 تواصل مع الفريق</button></div>
+      </div>
+      <div class="ph-nav"><span>خطتي</span><span>المكتبة</span><span class="on">اسأل</span><span>الملف</span></div></div>
+
+    <div class="phone"><div class="ph-top" style="background:var(--navy)"><small>Quiz · Soft foods</small><h4>Question 3 of 5</h4></div>
+      <div class="ph-body quiz">
+        <div style="font-size:13.5px;font-weight:600;margin:4px 0 8px">Which of these is a good food today?</div>
+        <label>🥨 Crunchy crisps</label><label class="ok">🍦 Cold yoghurt ✓</label><label>🍕 Pizza crust</label>
+        <div class="card" style="padding:10px;margin-top:10px;text-align:center"><span class="badge">★ 3 stars earned</span><div class="sm muted" style="margin-top:6px">Great job, Layla! 2 more to unlock the “Brave Healer” badge.</div></div>
+        <div class="bar" style="margin-top:12px"><i style="width:60%;background:var(--orange)"></i></div>
+      </div>
+      <div class="ph-nav"><span>My plan</span><span class="on">Quiz</span><span>Ask</span><span>Profile</span></div></div>
+  </div>
+  <div class="note">Accessibility: screen-reader labels, text-to-speech, captions/transcripts, adjustable font size and high-contrast mode (WCAG 2.1 AA target).</div>
+</section>
+
+<!-- 04 PES -->
+<section class="scr" id="s-pes">
+  <div class="hdr"><div><h1>04 · Bedside Patient Entertainment System (PES)</h1><p>Education playlist pushed to the inpatient TV/tablet via the PES integration API.</p></div><span class="tag n">Delivery Service</span></div>
+  <div style="background:#0f1722;border-radius:16px;padding:26px;color:#fff;max-width:1000px">
+    <div style="display:flex;justify-content:space-between;opacity:.8;font-size:13px"><span>Room 4-12 · Bed B</span><span>Good afternoon, Layla 👋</span><span>14:20</span></div>
+    <h2 style="margin:18px 0 4px;font-size:26px">Your learning for today</h2><div style="opacity:.7;margin-bottom:16px">Chosen by your care team · العربية / English</div>
+    <div class="grid g3">
+      <div style="background:#1d2a3a;border-radius:12px;overflow:hidden"><div style="height:120px;background:linear-gradient(135deg,var(--teal),#4fb3bb);display:grid;place-items:center;font-size:40px">▶</div><div style="padding:12px"><b>Pain relief at home</b><div style="opacity:.7;font-size:12px">Video · 3 min · captions AR</div></div></div>
+      <div style="background:#1d2a3a;border-radius:12px;overflow:hidden;outline:3px solid var(--orange)"><div style="height:120px;background:linear-gradient(135deg,var(--orange),#f7b878);display:grid;place-items:center;font-size:40px">★</div><div style="padding:12px"><b>Soft-food picture quiz</b><div style="opacity:.7;font-size:12px">Interactive · for kids</div></div></div>
+      <div style="background:#1d2a3a;border-radius:12px;overflow:hidden"><div style="height:120px;background:linear-gradient(135deg,var(--navy),#4a6f9c);display:grid;place-items:center;font-size:40px">⚠</div><div style="padding:12px"><b>Warning signs at home</b><div style="opacity:.7;font-size:12px">Slides · read-aloud</div></div></div>
+    </div>
+    <div style="margin-top:18px;opacity:.7;font-size:12px">Use the remote ◀ ▶ · Press 🔊 for read-aloud · Large-text mode on</div>
+  </div>
+</section>
+
+<!-- 05 CMS -->
+<section class="scr" id="s-cms">
+  <div class="hdr"><div><h1>05 · CMS Content Workflow (Drupal 11)</h1><p>Every item moves through governed states with role-based approvals and full version history.</p></div><div style="display:flex;gap:8px"><button class="btn">⇪ Import / upload</button><button class="btn p">+ New content</button></div></div>
+  <div class="flow" style="margin-bottom:12px"><span class="d">Draft</span>→<span class="d">Clinical review</span>→<span class="c">Translation &amp; cultural review</span>→<span class="d">Committee approval</span>→<span class="d">Published</span>→<span>Review due (12–24 months)</span></div>
+  <div class="kan">
+    <div class="col"><h5>Draft <span>12</span></h5>
+      <div class="kc"><b>Asthma action plan – school-age</b><span class="muted">Peds Pulmonary · EN</span><div class="chips"><span class="tag o">AI first draft</span></div></div>
+      <div class="kc"><b>Gestational diabetes – meal ideas</b><span class="muted">Women's · EN</span><div class="chips"><span class="tag">Sidra-authored</span></div></div></div>
+    <div class="col"><h5>Clinical review <span>8</span></h5>
+      <div class="kc"><b>Bronchiolitis – caring at home</b><span class="muted">Reviewer: Dr. S. (Peds)</span><div class="chips"><span class="tag r">Due in 2 days</span></div></div>
+      <div class="kc"><b>IVF – egg retrieval preparation</b><span class="muted">Reviewer: RN lead, Reproductive Med.</span></div></div>
+    <div class="col"><h5>Translation <span>15</span></h5>
+      <div class="kc"><b>Neonatal jaundice</b><span class="muted">EN → AR ✓ · EN → UR in QA</span><div class="chips"><span class="tag o">MADLAD + human QA</span></div></div>
+      <div class="kc"><b>Cast care for children</b><span class="muted">EN → AR in cultural review</span></div></div>
+    <div class="col"><h5>Committee approval <span>5</span></h5>
+      <div class="kc"><b>Breastfeeding – first week</b><span class="muted">Lactation · EN/AR/UR</span><div class="chips"><span class="tag n">PEC meeting 22 Oct</span></div></div></div>
+    <div class="col"><h5>Published <span>612</span></h5>
+      <div class="kc"><b>After tonsillectomy care</b><span class="muted">v3.2 · EN/AR/UR · Grade 5</span><div class="chips"><span class="tag g">Live</span></div></div>
+      <div class="kc"><b>Fever in children</b><span class="muted">v2.0 · review due 01/2027</span><div class="chips"><span class="tag o">Review soon</span></div></div></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Content item metadata (structured for AI recommendation)</h3>
+    <table><tr><th>Field</th><th>Example</th><th>Field</th><th>Example</th></tr>
+    <tr><td>Clinical codes</td><td>ICD-10 J35.01 · SNOMED CT 173422009</td><td>Audience</td><td>Parent / Child / Adult patient</td></tr>
+    <tr><td>Age band</td><td>5–8 years</td><td>Reading level</td><td>Grade 5 (auto-scored)</td></tr>
+    <tr><td>Languages</td><td>EN (source) · AR · UR linked</td><td>Formats</td><td>Handout · Video · Slides · Quiz</td></tr>
+    <tr><td>Specialty</td><td>Pediatric ENT</td><td>Evidence source</td><td>Guideline ref. + Sidra SME sign-off</td></tr></table></div>
+</section>
+
+<!-- 06 GOVERNANCE -->
+<section class="scr" id="s-governance">
+  <div class="hdr"><div><h1>06 · AI Content Governance Agent</h1><p>Continuously checks the library for errors, inconsistencies across languages, readability and expired reviews. All changes require human approval.</p></div><span class="tag n">Admin &amp; Content Governance Agent</span></div>
+  <div class="grid g4" style="margin-bottom:14px">
+    <div class="kpi"><small>Open findings</small><b>23</b><span style="color:var(--warn)">6 high priority</span></div>
+    <div class="kpi"><small>Language mismatches</small><b>9</b><span style="color:var(--warn)">AR 5 · UR 4</span></div>
+    <div class="kpi"><small>Reviews overdue</small><b>4</b><span style="color:var(--bad)">auto-unpublish in 30 d</span></div>
+    <div class="kpi"><small>Above target reading level</small><b>11</b><span>simplified drafts ready</span></div>
+  </div>
+  <div class="card"><h3>Finding #G-1042 · Dose interval mismatch between EN and AR <span class="tag r">High · safety</span></h3>
+    <div class="diff">
+      <div class="box"><div class="sm muted">English (source) v3.2</div>Give paracetamol every <mark>4 to 6 hours</mark> as needed. Do not give more than <mark>4 doses</mark> in 24 hours.</div>
+      <div class="box" dir="rtl" style="text-align:right"><div class="sm muted">العربية v3.1</div>أعطِ الباراسيتامول كل <mark class="r">٨ ساعات</mark> عند الحاجة. لا تعطِ أكثر من <mark>٤ جرعات</mark> خلال ٢٤ ساعة.</div>
+    </div>
+    <div class="m a" style="max-width:100%;margin-top:12px"><b>Agent proposal:</b> Arabic v3.1 says “every 8 hours”; the English source says “every 4 to 6 hours”. Proposed fix: <span dir="rtl">«كل ٤ إلى ٦ ساعات»</span>. Routed to: Pharmacy reviewer + Arabic linguist. Item stays published with a warning banner until the fix is approved.</div>
+    <div style="display:flex;gap:8px;margin-top:12px"><button class="btn">View full diff</button><button class="btn">Reject</button><button class="btn p">Send for approval</button></div>
+  </div>
+</section>
+
+<!-- 07 ANALYTICS -->
+<section class="scr" id="s-analytics">
+  <div class="hdr"><div><h1>07 · Analytics &amp; JCI Compliance</h1><p>Apache Superset dashboards over de-identified usage data. Ask questions in natural language through the Admin agent.</p></div><span class="seg"><span>7 d</span><span class="on">30 d</span><span>Quarter</span></span></div>
+  <div class="grid g4" style="margin-bottom:14px">
+    <div class="kpi"><small>Education episodes</small><b>18,940</b><span>▲ 12% vs prior</span></div>
+    <div class="kpi"><small>Discharges with documented education</small><b>94.6%</b><span>Target 95% (PCC.5)</span></div>
+    <div class="kpi"><small>Teach-back understood</small><b>87.2%</b><span>▲ 4.1 pts</span></div>
+    <div class="kpi"><small>Avg. time to assign (clinician)</small><b>48 s</b><span>▼ from 4.5 min</span></div>
+  </div>
+  <div class="grid g2">
+    <div class="card"><h3>Episodes by language</h3><div class="vbars"><div><i style="height:120px"></i>Arabic</div><div><i style="height:100px"></i>English</div><div><i class="o" style="height:38px"></i>Urdu</div><div><i class="o" style="height:16px"></i>Other</div></div></div>
+    <div class="card"><h3>Engagement by channel</h3>
+      <table><tr><th>Channel</th><th style="width:55%">Opened</th><th>%</th></tr>
+      <tr><td>Mobile app</td><td><div class="bar"><i style="width:82%"></i></div></td><td>82%</td></tr>
+      <tr><td>Portal</td><td><div class="bar"><i style="width:64%"></i></div></td><td>64%</td></tr>
+      <tr><td>PES bedside</td><td><div class="bar"><i style="width:71%"></i></div></td><td>71%</td></tr>
+      <tr><td>Email</td><td><div class="bar"><i style="width:43%"></i></div></td><td>43%</td></tr></table></div>
+  </div>
+  <div class="card" style="margin-top:14px"><div class="agent"><span class="dot"></span>Ask the Admin agent</div>
+    <div class="chat"><div class="m u">Which specialties have the lowest Urdu coverage?</div>
+    <div class="m a"><b>Answer:</b> Lowest Urdu coverage: Neonatology (31%), Endocrine &amp; Diabetes (38%), IVF (40%). Recommendation: prioritise 24 high-volume topics for the next translation sprint. <span class="sm muted">(query run on de-identified dataset · SQL shown in audit log)</span></div></div></div>
+  <div class="note">Illustrative figures only.</div>
+</section>
+
+<!-- 08 ACCESS -->
+<section class="scr" id="s-access">
+  <div class="hdr"><div><h1>08 · Users &amp; Access (RBAC)</h1><p>Keycloak brokers Sidra Entra ID (staff, MFA) and Azure AD B2C (patients). Roles map from AD groups.</p></div><button class="btn p">+ Map AD group</button></div>
+  <div class="card"><table>
+    <tr><th>Role</th><th>Identity source</th><th>MFA</th><th>Search &amp; assign</th><th>Customise content</th><th>Author / approve</th><th>Analytics</th><th>Personal data</th></tr>
+    <tr><td><b>Physician</b></td><td>Entra ID (SSO from PowerChart)</td><td>Per Sidra policy</td><td>✓</td><td>✓ (per patient)</td><td>Reviewer</td><td>Own patients</td><td>Token only</td></tr>
+    <tr><td><b>Nurse</b></td><td>Entra ID</td><td>Per Sidra policy</td><td>✓</td><td>✓ (per patient)</td><td>—</td><td>Unit</td><td>Token only</td></tr>
+    <tr><td><b>Content editor</b></td><td>Entra ID</td><td><span class="tag g">Required</span></td><td>✓</td><td>✓</td><td>Author</td><td>Content</td><td>None</td></tr>
+    <tr><td><b>PEC approver</b></td><td>Entra ID</td><td><span class="tag g">Required</span></td><td>✓</td><td>✓</td><td>Approve / publish</td><td>All</td><td>None</td></tr>
+    <tr><td><b>Platform admin</b></td><td>Entra ID</td><td><span class="tag g">Required</span></td><td>—</td><td>—</td><td>Configure</td><td>All</td><td>None</td></tr>
+    <tr><td><b>Patient / family</b></td><td>Azure AD B2C (or anonymous for public library)</td><td>Optional</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Own data</td></tr>
+  </table></div>
+  <div class="card" style="margin-top:14px"><h3>Recent audit events</h3><table>
+    <tr><th>Time</th><th>User</th><th>Action</th><th>Object</th></tr>
+    <tr><td>14:02</td><td>nurse.r••• (Entra ID)</td><td>Documented education</td><td>Token 7F2A… → Cerner MDM sent</td></tr>
+    <tr><td>13:47</td><td>Co-Pilot agent</td><td>Suggested 7 items · approved by physician</td><td>Token 7F2A…</td></tr>
+    <tr><td>11:15</td><td>pec.approver (MFA)</td><td>Published v3.2</td><td>PEM-ENT-011</td></tr></table></div>
+</section>
+
+</main></div>
+<script>
+function show(){var h=(location.hash||"#home").slice(1);if(!document.getElementById("s-"+h))h="home";
+document.querySelectorAll(".scr").forEach(function(s){s.classList.toggle("on",s.id==="s-"+h)});
+document.querySelectorAll(".idx a").forEach(function(a){a.classList.toggle("on",a.dataset.s===h)});window.scrollTo(0,0)}
+addEventListener("hashchange",show);show();
+</script>
+</body>
+</html>
